@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 
 const theme = {
   mainColor: '#212121',
-  backgrounColor: '#FFFFFF',
+  backgroundColor: '#FFFFFF',
   zIndex: {
     maxLevel: 1000,
     mediumLevel: 900, 
