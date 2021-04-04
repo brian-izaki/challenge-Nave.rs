@@ -9,4 +9,8 @@ export default createGlobalStyle`
   body, input, button {
     font-family: 'Montserrat', Helvetica, Arial, sans-serif;
   }
+
+  img {
+    width: 100%;
+  }
 `

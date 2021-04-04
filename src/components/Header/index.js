@@ -13,7 +13,6 @@ const ButtonExit = styled.a`
   font-size: 1rem;
   line-height: 1.5rem;
   font-weight: 600;
-  padding: 0 5px;
 
   &::after {
     content: "";

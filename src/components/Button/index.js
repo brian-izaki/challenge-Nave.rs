@@ -13,6 +13,10 @@ const Button = styled.button`
   cursor: pointer;
 
   transition: ease .5s;
+
+  &:hover{
+    opacity: 0.4;
+  }
 `
 
 Button.Dark = styled(Button)`
@@ -35,7 +39,11 @@ Button.Light = styled(Button)`
   &:hover {
     filter: brightness(70%)
   }
+`
 
+Button.Icon = styled(Button)`
+  width: 34px;
+  height: 32px;
 `
 
 export default Button;
