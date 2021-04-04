@@ -3,8 +3,11 @@
 # Tecnologia utilizada
 - libs:
   - React
-  - Styled component
-- Toolkit Create React App
+  - prop-types
+  - react-router-dom
+  - react-icons
+  - Styled components
+- Utilizado o toolkit Create React App
 
 ---
 
