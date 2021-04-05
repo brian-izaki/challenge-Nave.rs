@@ -31,13 +31,13 @@ const FormProfileContainer = styled.form`
   }
 `;
 
-export default function FormNaverProfile({ title }) {
+export default function FormNaverProfile({ title, onClickSave, onChange, dataInput }) {
   return (
     <FormNaverProfileContainer>
       <HeaderContentContainer>
         <Button.Icon>
           <CustomLink to="/home">
-            <MdKeyboardArrowLeft size="2rem" />
+            <MdKeyboardArrowLeft size={32} />
           </CustomLink>
         </Button.Icon>
         <h1>{title}</h1>
@@ -45,36 +45,58 @@ export default function FormNaverProfile({ title }) {
 
       <FormProfileContainer>
         <div>
-          <FormField text="Nome" type="text" name="name" id="name" />
+          <FormField
+            text="Nome"
+            type="text"
+            name="name"
+            id="name"
+            onChange={onChange}
+            value={dataInput.name}
+          />
           <FormField
             text="Data do nascimento"
             type="text"
             name="birthdate"
             id="birthdate"
+            onChange={onChange}
+            value={dataInput.birthdate}
           />
           <FormField
             text="Projetos que participou"
             type="text"
-            name="projects"
-            id="projects"
-          />
+            name="project"
+            id="project"
+            onChange={onChange}
+            value={dataInput.project}
+            />
         </div>
         <div>
-          <FormField text="Cargo" type="text" name="job_role" id="job_role" />
+          <FormField
+            text="Cargo"
+            type="text"
+            name="job_role"
+            id="job_role"
+            onChange={onChange}
+            value={dataInput.job_role}
+          />
           <FormField
             text="Tempo de empresa"
             type="text"
             name="admission_date"
             id="admission_date"
+            onChange={onChange}
+            value={dataInput.admission_date}
           />
           <FormField
             text="URL da foto do Naver"
             type="text"
             name="url"
             id="url"
+            onChange={onChange}
+            value={dataInput.url}
           />
         </div>
-        <Button.Dark> Salvar </Button.Dark>
+        <Button.Dark onClick={onClickSave}> Salvar </Button.Dark>
       </FormProfileContainer>
     </FormNaverProfileContainer>
   );
