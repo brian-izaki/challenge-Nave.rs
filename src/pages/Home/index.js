@@ -2,6 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import Button from "../../components/Button";
 import Card from "../../components/Card";
+import CustomLink from "../../components/CustomLink";
 import Header from "../../components/Header";
 import ModalInformation from "../../components/Modal/Information";
 import ModalProfile from "../../components/Modal/Profile";
@@ -20,7 +21,6 @@ const HomeContainer = styled.div`
         font-weight: 600;
       }
     }
-    margin-top: 4rem;
   }
 
   & .card-list {
@@ -50,7 +50,11 @@ export default function Home() {
           <div className="main-header">
             <h1>Navers</h1>
             <div />
-            <Button.Dark>Adicionar Naver</Button.Dark>
+            <Button.Dark>
+              <CustomLink to="/cadastrar">
+                Adicionar Naver
+              </CustomLink>
+            </Button.Dark>
           </div>
 
           <div className="card-list">
