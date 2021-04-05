@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { useHistory } from "react-router";
 import styled from "styled-components";
 
 const ModalContainer = styled.div`
@@ -22,10 +23,13 @@ ModalContainer.PaperContainer = styled.div`
 
 export default function Modal({ children, isOpenModal, setIsOpenModal }) {
 
+  const history = useHistory();
+
   function handleClickOutModal(e) {
     const isOutModal = e.target.dataset.outModal;
     if (isOutModal) {
       setIsOpenModal(false)
+      history.push('/home')
     }
   }
 

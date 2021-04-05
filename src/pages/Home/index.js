@@ -1,11 +1,8 @@
-import { useState } from "react";
 import styled from "styled-components";
 import Button from "../../components/Button";
 import Card from "../../components/Card";
 import CustomLink from "../../components/CustomLink";
 import Header from "../../components/Header";
-import ModalInformation from "../../components/Modal/Information";
-import ModalProfile from "../../components/Modal/Profile";
 
 const HomeContainer = styled.div`
   & main {
@@ -30,16 +27,24 @@ const HomeContainer = styled.div`
   }
 `;
 
-export default function Home() {
-  const [isOpenModalInfo, setIsOpenModalInfo] = useState(false);
-  const [isOpenModalProfile, setIsOpenModalProfile] = useState(true);
-
+export default function Home() {  
+  // deletar os testes de profile
   const testeProfile = {
-    name: "Brian Izaki",
+    name: "Brian Izaki 8738",
     birthdate: "25/01/2000",
     admission_date: "01/03/2021",
     office: "Desenvolvedor front end",
     projects: "Desafio de Front-end",
+    srcImage: "https://avatars.githubusercontent.com/u/42379617"
+  };
+
+  const testeProfile2 = {
+    name: "Zenebes",
+    birthdate: "25/06/1999",
+    admission_date: "01/03/2021",
+    office: "UX designer",
+    projects: "Desafio de UX design",
+    srcImage: "https://static.escolakids.uol.com.br/2019/07/lontra.jpg"
   };
 
   return (
@@ -58,34 +63,19 @@ export default function Home() {
           </div>
 
           <div className="card-list">
+            {/* Fazer um map na lista de navers que vier do back end */}
             <Card
-              srcImage="https://avatars.githubusercontent.com/u/42379617?v=4"
-              name="Brian Izaki"
-              office="Desenvolvedor front-end & desenvolvedor backend"
-              deleteClick={() => {
-                console.log("deleteou");
-              }}
-              editClick={() => {
-                console.log("editou");
-              }}
+              profileData={testeProfile}
+              editPage="/alterar"
+            />
+
+            <Card
+              profileData={testeProfile2}
+              editPage="/alterar"
             />
           </div>
         </main>
       </HomeContainer>
-
-      <ModalInformation
-        isOpenModal={isOpenModalInfo}
-        setIsOpenModal={setIsOpenModalInfo}
-      >
-        <h1>Ola teste</h1>
-        <p>Cadastrado </p>
-      </ModalInformation>
-
-      <ModalProfile
-        isOpenModal={isOpenModalProfile}
-        setIsOpenModal={setIsOpenModalProfile}
-        profileData={testeProfile}
-      />
     </>
   );
 }

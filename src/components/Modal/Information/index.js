@@ -2,6 +2,7 @@ import { MdClose } from "react-icons/md";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Modal from "..";
+import { useHistory } from "react-router";
 
 const InformationContainer = styled.div`
   position: relative;
@@ -30,15 +31,18 @@ export default function ModalInformation({
   setIsOpenModal,
   isOpenModal,
 }) {
+  const history = useHistory();
+  
   function handleCloseModal() {
     setIsOpenModal(false);
+    history.push('/home')
   }
 
   return (
     <Modal isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal}>
       <InformationContainer>
         <span onClick={handleCloseModal} className="closeModal">
-          <MdClose size="1.5rem" />
+          <MdClose size={24} />
         </span>
 
         {children}
