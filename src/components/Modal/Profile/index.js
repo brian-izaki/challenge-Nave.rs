@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { MdClose, MdDelete, MdEdit } from "react-icons/md";
 import Modal from "..";
 import Button from "../../Button";
+import CustomLink from "../../CustomLink";
 
 const ProfileContainer = styled.div`
   position: relative;
@@ -40,11 +41,16 @@ const ProfileContainer = styled.div`
         margin-bottom: 24px;
       }
     }
-
   }
 `;
 
-export default function ModalProfile({ setIsOpenModal, isOpenModal, profileData }) {
+export default function ModalProfile({
+  profileData,
+  setIsOpenModal,
+  isOpenModal,
+  deleteClick,
+  editPage,
+}) {
   function handleCloseModal() {
     setIsOpenModal(false);
   }
@@ -53,12 +59,12 @@ export default function ModalProfile({ setIsOpenModal, isOpenModal, profileData 
     <Modal isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal}>
       <ProfileContainer>
         <span onClick={handleCloseModal} className="closeModal">
-          <MdClose size="1.5rem" />
+          <MdClose size={24} />
         </span>
 
         <div className="photo">
           <img
-            src="https://avatars.githubusercontent.com/u/42379617?v=4"
+            src={profileData.srcImage}
             alt="imagem de perfil"
           />
         </div>
@@ -82,13 +88,13 @@ export default function ModalProfile({ setIsOpenModal, isOpenModal, profileData 
             <dd> {profileData.projects} </dd>
           </dl>
           <div>
-            <Button.Icon onClick={() => console.log('modal profile delete')}>
-              {" "}
-              <MdDelete size="1.5rem" />{" "}
+            <Button.Icon onClick={deleteClick}>
+              <MdDelete size={24} />
             </Button.Icon>
-            <Button.Icon onClick={() => console.log('modal profile edit')}>
-              {" "}
-              <MdEdit size="1.5rem" />{" "}
+            <Button.Icon>
+              <CustomLink to={editPage}>
+                <MdEdit size={24} />
+              </CustomLink>
             </Button.Icon>
           </div>
         </div>
@@ -98,8 +104,6 @@ export default function ModalProfile({ setIsOpenModal, isOpenModal, profileData 
 }
 
 Modal.propTypes = {
-  isOpenModal: PropTypes.bool.isRequired,
-  setIsOpenModal: PropTypes.func.isRequired,
   profileData: PropTypes.shape({
     name: PropTypes.string,
     birthdate: PropTypes.string,
@@ -107,4 +111,8 @@ Modal.propTypes = {
     office: PropTypes.string,
     projects: PropTypes.string,
   }),
+  isOpenModal: PropTypes.bool.isRequired,
+  setIsOpenModal: PropTypes.func.isRequired,
+  deleteClick: PropTypes.func.isRequired,
+  editPage: PropTypes.string.isRequired,
 };
