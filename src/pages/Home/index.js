@@ -7,10 +7,6 @@ import ModalInformation from "../../components/Modal/Information";
 import ModalProfile from "../../components/Modal/Profile";
 
 const HomeContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin: 24px 32px;
-
   & main {
     & .main-header {
       display: flex;
