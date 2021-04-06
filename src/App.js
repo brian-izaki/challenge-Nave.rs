@@ -1,4 +1,4 @@
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import styled from "styled-components";
 import GlobalStyle from "./styles/globalStyle";
 import Home from "./pages/Home";
@@ -6,6 +6,8 @@ import Login from "./pages/Login";
 import Cadastrar from "./pages/Cadastrar";
 import Alterar from "./pages/Alterar";
 import { PAGES_ROUTE } from "./utils/pagesRoute";
+import { getToken } from "./utils/handleToken";
+import { useState } from "react";
 
 const Container = styled.div`
   display: flex;
@@ -14,6 +16,28 @@ const Container = styled.div`
 `;
 
 function App() {
+  const [token, setToken] = useState(getToken());
+
+  function PrivateRoute({ children, ...attr }) {
+    return (
+      <Route
+        {...attr}
+        render={({ location }) =>
+          token ? (
+            children
+          ) : (
+            <Redirect
+              to={{
+                pathname: PAGES_ROUTE.login,
+                state: { from: location },
+              }}
+            />
+          )
+        }
+      />
+    );
+  }
+
   return (
     <>
       <GlobalStyle />
@@ -21,21 +45,21 @@ function App() {
       <Container>
         <BrowserRouter>
           <Switch>
-            <Route exact path={PAGES_ROUTE.home}>
-              <Home />
-            </Route>
-
             <Route path={PAGES_ROUTE.login}>
-              <Login />
+              <Login setToken={setToken} />
             </Route>
 
-            <Route path={PAGES_ROUTE.cadastrar}>
+            <PrivateRoute exact path={PAGES_ROUTE.home}>
+              <Home />
+            </PrivateRoute>
+
+            <PrivateRoute path={PAGES_ROUTE.cadastrar}>
               <Cadastrar />
-            </Route>
+            </PrivateRoute>
 
-            <Route path={PAGES_ROUTE.alterar}>
+            <PrivateRoute path={PAGES_ROUTE.alterar}>
               <Alterar />
-            </Route>
+            </PrivateRoute>
           </Switch>
         </BrowserRouter>
       </Container>

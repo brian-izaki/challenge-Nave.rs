@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../../assets/logo.svg";
 import { PAGES_ROUTE } from "../../utils/pagesRoute";
+import { removeToken } from '../../utils/handleToken'
 
 const HeaderContainer = styled.header`
   display: flex;
@@ -34,6 +35,9 @@ const ButtonExit = styled(Link)`
 `;
 
 export default function Header() {
+
+  const handleLogout = () => removeToken();
+
   return (
     <HeaderContainer>
       <div>
@@ -43,8 +47,7 @@ export default function Header() {
       <div />
 
       <div>
-        {/* Fazer com que deslogue da aplicação apagando o login */}
-        <ButtonExit to={PAGES_ROUTE.login}>Sair</ButtonExit>
+        <ButtonExit to={PAGES_ROUTE.login} onClick={handleLogout}>Sair</ButtonExit>
       </div>
     </HeaderContainer>
   );
