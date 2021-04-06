@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { useHistory } from "react-router";
 import styled from "styled-components";
+import { PAGES_ROUTE } from "../../utils/pagesRoute";
 
 const ModalContainer = styled.div`
   display: ${(props) => (props.isOpen ? "block" : "none")};
@@ -29,7 +30,7 @@ export default function Modal({ children, isOpenModal, setIsOpenModal }) {
     const isOutModal = e.target.dataset.outModal;
     if (isOutModal) {
       setIsOpenModal(false)
-      history.push('/home')
+      history.push(PAGES_ROUTE.home)
     }
   }
 

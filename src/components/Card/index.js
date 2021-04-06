@@ -6,6 +6,7 @@ import Button from "../Button";
 import CustomLink from "../CustomLink";
 import ModalProfile from "../Modal/Profile";
 import ModalInformation from "../Modal/Information";
+import { PAGES_ROUTE } from "../../utils/pagesRoute";
 
 const CardContainer = styled.div`
   display: flex;
@@ -77,7 +78,7 @@ export default function Card({ profileData, editPage }) {
         isOpenModal={isOpenModalProfile}
         setIsOpenModal={setIsOpenModalProfile}
         profileData={profileData}
-        editPage="/alterar"
+        editPage={PAGES_ROUTE.alterar}
         deleteClick={showModalDeleteProfile}
       />
 

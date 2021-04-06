@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Modal from "..";
 import { useHistory } from "react-router";
+import { PAGES_ROUTE } from '../../../utils/pagesRoute'
 
 const InformationContainer = styled.div`
   position: relative;
@@ -35,7 +36,7 @@ export default function ModalInformation({
   
   function handleCloseModal() {
     setIsOpenModal(false);
-    history.push('/home')
+    history.push(PAGES_ROUTE.home)
   }
 
   return (

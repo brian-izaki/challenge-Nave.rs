@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Cadastrar from "./pages/Cadastrar";
 import Alterar from "./pages/Alterar";
+import { PAGES_ROUTE } from "./utils/pagesRoute";
 
 const Container = styled.div`
   display: flex;
@@ -20,19 +21,19 @@ function App() {
       <Container>
         <BrowserRouter>
           <Switch>
-            <Route exact path="/">
-              <Login />
-            </Route>
-
-            <Route path="/home">
+            <Route exact path={PAGES_ROUTE.home}>
               <Home />
             </Route>
 
-            <Route path="/cadastrar">
+            <Route path={PAGES_ROUTE.login}>
+              <Login />
+            </Route>
+
+            <Route path={PAGES_ROUTE.cadastrar}>
               <Cadastrar />
             </Route>
 
-            <Route path="/alterar">
+            <Route path={PAGES_ROUTE.alterar}>
               <Alterar />
             </Route>
           </Switch>

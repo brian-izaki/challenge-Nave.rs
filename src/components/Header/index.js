@@ -1,5 +1,7 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../../assets/logo.svg";
+import { PAGES_ROUTE } from "../../utils/pagesRoute";
 
 const HeaderContainer = styled.header`
   display: flex;
@@ -8,7 +10,7 @@ const HeaderContainer = styled.header`
   margin-bottom: 4rem;
 `;
 
-const ButtonExit = styled.a`
+const ButtonExit = styled(Link)`
   color: ${(props) => props.theme.mainColor};
   text-decoration: none;
   font-size: 1rem;
@@ -41,7 +43,8 @@ export default function Header() {
       <div />
 
       <div>
-        <ButtonExit href="#">Sair</ButtonExit>
+        {/* Fazer com que deslogue da aplicação apagando o login */}
+        <ButtonExit to={PAGES_ROUTE.login}>Sair</ButtonExit>
       </div>
     </HeaderContainer>
   );

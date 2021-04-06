@@ -3,6 +3,7 @@ import FormField from "../FormField";
 import Button from "../Button";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import CustomLink from "../CustomLink";
+import { PAGES_ROUTE } from "../../utils/pagesRoute";
 
 const FormNaverProfileContainer = styled.section`
   margin: 0 auto;
@@ -36,7 +37,7 @@ export default function FormNaverProfile({ title, onClickSave, onChange, dataInp
     <FormNaverProfileContainer>
       <HeaderContentContainer>
         <Button.Icon>
-          <CustomLink to="/home">
+          <CustomLink to={PAGES_ROUTE.home}>
             <MdKeyboardArrowLeft size={32} />
           </CustomLink>
         </Button.Icon>
