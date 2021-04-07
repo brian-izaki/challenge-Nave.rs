@@ -4,7 +4,7 @@ import { MdClose, MdDelete, MdEdit } from "react-icons/md";
 import Modal from "..";
 import Button from "../../Button";
 import CustomLink from "../../CustomLink";
-import yearsToday from "../../../utils/yearsToday";
+import { yearsToday } from "../../../utils/handleDate";
 
 const ProfileContainer = styled.div`
   position: relative;
