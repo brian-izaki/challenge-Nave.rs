@@ -2,6 +2,8 @@ import { useState } from "react";
 import FormNaverProfile from "../../components/FormNaverProfile";
 import Header from "../../components/Header";
 import ModalInformation from "../../components/Modal/Information";
+import { createNaver } from "../../services/navers";
+import { validDate } from "../../utils/handleDate";
 
 export default function Cadastrar() {
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -23,6 +25,11 @@ export default function Cadastrar() {
 
   function saveClick(e) {
     e.preventDefault();
+    createNaver({
+      ...dataProfile,
+      birthdate: validDate(dataProfile.birthdate),
+      admission_date: validDate(dataProfile.admission_date)
+    })
     setIsOpenModal(true);
   }
 
@@ -33,7 +40,7 @@ export default function Cadastrar() {
         title="Adicionar Naver"
         dataInput={dataProfile}
         onChange={handleInput}
-        onClickSave={saveClick}
+        onSubmit={saveClick}
       />
 
       <ModalInformation

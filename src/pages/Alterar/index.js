@@ -33,7 +33,7 @@ export default function Alterar() {
         title="Alterar Naver"
         dataInput={dataProfile}
         onChange={handleInput}
-        onClickSave={saveClick}
+        onSubmit={saveClick}
       />
 
       <ModalInformation

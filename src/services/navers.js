@@ -9,9 +9,21 @@ function findAllNavers(){
     }
   })
     .then(response => response.json())
-    .then(navers => navers)
+}
+
+function createNaver(body) {
+  return fetch(API_URL, {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${getToken()}`
+    },
+    body: JSON.stringify(body)
+  })
+    .then(response => response.json())
 }
 
 export {
   findAllNavers,
+  createNaver,
 }

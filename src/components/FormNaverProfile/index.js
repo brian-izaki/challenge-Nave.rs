@@ -32,7 +32,12 @@ const FormProfileContainer = styled.form`
   }
 `;
 
-export default function FormNaverProfile({ title, onClickSave, onChange, dataInput }) {
+export default function FormNaverProfile({
+  title,
+  onSubmit,
+  onChange,
+  dataInput,
+}) {
   return (
     <FormNaverProfileContainer>
       <HeaderContentContainer>
@@ -44,35 +49,41 @@ export default function FormNaverProfile({ title, onClickSave, onChange, dataInp
         <h1>{title}</h1>
       </HeaderContentContainer>
 
-      <FormProfileContainer>
+      <FormProfileContainer onSubmit={onSubmit}>
         <div>
           <FormField
+            tabIndex="1"
             text="Nome"
             type="text"
             name="name"
             id="name"
             onChange={onChange}
             value={dataInput.name}
+            required
           />
           <FormField
+            tabIndex="3"
             text="Data do nascimento"
-            type="text"
+            type="date"
             name="birthdate"
             id="birthdate"
             onChange={onChange}
             value={dataInput.birthdate}
+            required
           />
           <FormField
+            tabIndex="5"
             text="Projetos que participou"
             type="text"
             name="project"
             id="project"
             onChange={onChange}
             value={dataInput.project}
-            />
+          />
         </div>
         <div>
           <FormField
+            tabIndex="2"
             text="Cargo"
             type="text"
             name="job_role"
@@ -81,23 +92,29 @@ export default function FormNaverProfile({ title, onClickSave, onChange, dataInp
             value={dataInput.job_role}
           />
           <FormField
+            tabIndex="4"
             text="Tempo de empresa"
-            type="text"
+            type="date"
             name="admission_date"
             id="admission_date"
             onChange={onChange}
             value={dataInput.admission_date}
+            required
           />
           <FormField
+            tabIndex="6"
             text="URL da foto do Naver"
             type="text"
             name="url"
             id="url"
             onChange={onChange}
             value={dataInput.url}
+            required
           />
         </div>
-        <Button.Dark onClick={onClickSave}> Salvar </Button.Dark>
+        <Button.Dark tabIndex="7" >
+          Salvar
+        </Button.Dark>
       </FormProfileContainer>
     </FormNaverProfileContainer>
   );
