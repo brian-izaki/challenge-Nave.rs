@@ -55,12 +55,12 @@ export default function Card({ profileData, editPage }) {
     <>
       <CardContainer>
         <div onClick={showModalProfile}>
-          <img src={profileData.srcImage} alt="avatar user" />
+          <img src={profileData.url} alt="avatar user" />
         </div>
 
         <p>{profileData.name}</p>
 
-        <p>{profileData.office}</p>
+        <p>{profileData.job_role}</p>
 
         <div>
           <Button.Icon onClick={showModalDeleteProfile}>
@@ -111,11 +111,13 @@ export default function Card({ profileData, editPage }) {
 
 Card.propTypes = {
   profileData: PropTypes.shape({
+    id: PropTypes.string,
     name: PropTypes.string,
     birthdate: PropTypes.string,
     admission_date: PropTypes.string,
-    office: PropTypes.string,
-    projects: PropTypes.string,
+    job_role: PropTypes.string,
+    project: PropTypes.string,
+    url: PropTypes.string,
   }),
   editPage: PropTypes.string.isRequired,
 };

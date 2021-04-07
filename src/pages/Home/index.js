@@ -1,8 +1,11 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Button from "../../components/Button";
 import Card from "../../components/Card";
 import CustomLink from "../../components/CustomLink";
 import Header from "../../components/Header";
+import { findAllNavers } from "../../services/navers";
+import { PAGES_ROUTE } from "../../utils/pagesRoute";
 
 const HomeContainer = styled.div`
   & main {
@@ -27,25 +30,15 @@ const HomeContainer = styled.div`
   }
 `;
 
-export default function Home() {  
-  // deletar os testes de profile
-  const testeProfile = {
-    name: "Brian Izaki 8738",
-    birthdate: "25/01/2000",
-    admission_date: "01/03/2021",
-    office: "Desenvolvedor front end",
-    projects: "Desafio de Front-end",
-    srcImage: "https://avatars.githubusercontent.com/u/42379617"
-  };
+export default function Home() {
+  const [listNavers, setListNavers] = useState([]);
 
-  const testeProfile2 = {
-    name: "Zenebes",
-    birthdate: "25/06/1999",
-    admission_date: "01/03/2021",
-    office: "UX designer",
-    projects: "Desafio de UX design",
-    srcImage: "https://static.escolakids.uol.com.br/2019/07/lontra.jpg"
-  };
+  useEffect(() => {
+    async function list() {
+      setListNavers(await findAllNavers());
+    }
+    list();
+  }, []);
 
   return (
     <>
@@ -56,23 +49,18 @@ export default function Home() {
             <h1>Navers</h1>
             <div />
             <Button.Dark>
-              <CustomLink to="/cadastrar">
-                Adicionar Naver
-              </CustomLink>
+              <CustomLink to="/cadastrar">Adicionar Naver</CustomLink>
             </Button.Dark>
           </div>
 
           <div className="card-list">
-            {/* Fazer um map na lista de navers que vier do back end */}
-            <Card
-              profileData={testeProfile}
-              editPage="/alterar"
-            />
-
-            <Card
-              profileData={testeProfile2}
-              editPage="/alterar"
-            />
+            {listNavers.map((item) => (
+              <Card
+                key={item.id}
+                profileData={item}
+                editPage={PAGES_ROUTE.alterar}
+              />
+            ))}
           </div>
         </main>
       </HomeContainer>

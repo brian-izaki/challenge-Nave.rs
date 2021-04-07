@@ -64,7 +64,7 @@ export default function ModalProfile({
 
         <div className="photo">
           <img
-            src={profileData.srcImage}
+            src={profileData.url}
             alt="imagem de perfil"
           />
         </div>
@@ -74,7 +74,7 @@ export default function ModalProfile({
             <dt>
               <h2> {profileData.name} </h2>
             </dt>
-            <dd> {profileData.office} </dd>
+            <dd> {profileData.job_role} </dd>
 
             <dt>Idade</dt>
             {/* Realizar canculo de tempo aqui */}
@@ -85,7 +85,7 @@ export default function ModalProfile({
             <dd> 1 </dd>
 
             <dt>Projetos que participou</dt>
-            <dd> {profileData.projects} </dd>
+            <dd> {profileData.project} </dd>
           </dl>
           <div>
             <Button.Icon onClick={deleteClick}>
@@ -105,11 +105,12 @@ export default function ModalProfile({
 
 Modal.propTypes = {
   profileData: PropTypes.shape({
+    id: PropTypes.string,
     name: PropTypes.string,
     birthdate: PropTypes.string,
     admission_date: PropTypes.string,
-    office: PropTypes.string,
-    projects: PropTypes.string,
+    job_role: PropTypes.string,
+    project: PropTypes.string,
   }),
   isOpenModal: PropTypes.bool.isRequired,
   setIsOpenModal: PropTypes.func.isRequired,
