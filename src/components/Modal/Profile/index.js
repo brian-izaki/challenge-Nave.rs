@@ -4,6 +4,7 @@ import { MdClose, MdDelete, MdEdit } from "react-icons/md";
 import Modal from "..";
 import Button from "../../Button";
 import CustomLink from "../../CustomLink";
+import yearsToday from "../../../utils/yearsToday";
 
 const ProfileContainer = styled.div`
   position: relative;
@@ -77,12 +78,10 @@ export default function ModalProfile({
             <dd> {profileData.job_role} </dd>
 
             <dt>Idade</dt>
-            {/* Realizar canculo de tempo aqui */}
-            <dd> 21 </dd>
+            <dd> {yearsToday(profileData.birthdate)} </dd>
 
-            {/* Realizar canculo de tempo aqui */}
             <dt>Tempo de empresa</dt>
-            <dd> 1 </dd>
+            <dd> {yearsToday(profileData.admission_date)} </dd>
 
             <dt>Projetos que participou</dt>
             <dd> {profileData.project} </dd>
