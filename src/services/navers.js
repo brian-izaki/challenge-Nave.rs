@@ -2,7 +2,7 @@ import { getToken } from '../utils/handleToken';
 
 const API_URL = "https://navedex-api.herokuapp.com/v1/navers"
 
-function findAllNavers(){
+async function findAllNavers(){
   return fetch(API_URL, {
     headers: {
       "Authorization": `Bearer ${getToken()}`
@@ -11,7 +11,16 @@ function findAllNavers(){
     .then(response => response.json())
 }
 
-function createNaver(body) {
+async function findOneNaver(id) {
+  return fetch(`${API_URL}/${id}`, {
+    headers: {
+      'Authorization': `Bearer ${getToken()}`
+    }
+  })
+    .then(response => response.json())
+}
+
+async function createNaver(body) {
   return fetch(API_URL, {
     method: "POST",
     headers: {
@@ -23,7 +32,19 @@ function createNaver(body) {
     .then(response => response.json())
 }
 
+async function deleteNaver(id) {
+  return fetch(`${API_URL}/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Authorization": `Bearer ${getToken()}`
+    },
+  })
+    .then(response => response.json())
+}
+
 export {
   findAllNavers,
+  findOneNaver,
   createNaver,
+  deleteNaver,
 }
