@@ -8,11 +8,13 @@ function yearsToday(date) {
 }
 
 
-function validDate(date) {
+function validDate(date, isToValueInput=false) {
   const regexDate = /(\d{4})|(\d{2})/g
   const [year, month, day] = date.match(regexDate);
 
-  return `${day}/${month}/${year}`
+  return !isToValueInput 
+    ? `${day}/${month}/${year}` 
+    : `${year}-${month}-${day}` 
 }
 
 export {

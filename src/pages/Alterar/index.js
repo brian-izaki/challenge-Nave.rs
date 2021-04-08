@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import FormNaverProfile from "../../components/FormNaverProfile";
 import Header from "../../components/Header";
 import ModalInformation from "../../components/Modal/Information";
+import { findOneNaver, updateNaver } from "../../services/navers";
+import { validDate } from "../../utils/handleDate";
 
 export default function Alterar() {
+  const { id } = useParams();
   const [dataProfile, setDataProfile] = useState({
     job_role: "",
     admission_date: "",
@@ -23,8 +27,34 @@ export default function Alterar() {
 
   function saveClick(e) {
     e.preventDefault();
-    setIsOpenModal(true)
+    updateNaver(id, {
+      ...dataProfile,
+      admission_date: validDate(dataProfile.admission_date),
+      birthdate: validDate(dataProfile.birthdate),
+    })
+    setIsOpenModal(true);
   }
+
+  useEffect(() => {
+    findOneNaver(id).then((response) => {
+      const {
+        job_role,
+        admission_date,
+        birthdate,
+        project,
+        name,
+        url,
+      } = response;
+      setDataProfile({
+        job_role,
+        admission_date: validDate(admission_date, true),
+        birthdate: validDate(birthdate, true),
+        project,
+        name,
+        url,
+      });
+    });
+  }, [id]);
 
   return (
     <>

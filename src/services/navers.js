@@ -42,9 +42,22 @@ async function deleteNaver(id) {
     .then(response => response.json())
 }
 
+async function updateNaver(id, body) {
+  return fetch(`${API_URL}/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Authorization': `Bearer ${getToken()}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
+  })
+    .then(response => response.json())
+}
+
 export {
   findAllNavers,
   findOneNaver,
   createNaver,
   deleteNaver,
+  updateNaver,
 }

@@ -95,7 +95,7 @@ export default function Home() {
               <Card
                 key={profileItem.id}
                 profileData={profileItem}
-                editPage={PAGES_ROUTE.alterar}
+                editPage={`${PAGES_ROUTE.alterar}/${profileItem.id}`}
                 showModalDeleteProfile={() => showModalDeleteProfile(profileItem)}
                 showModalProfile={() => showModalProfile(profileItem.id)}
               />
@@ -107,7 +107,7 @@ export default function Home() {
           isOpenModal={hasOpenModalProfile}
           setIsOpenModal={setHasOpenModalProfile}
           profileData={profileSelected}
-          editPage={PAGES_ROUTE.alterar}
+          editPage={`${PAGES_ROUTE.alterar}/${profileSelected.id}`}
           deleteClick={() => showModalDeleteProfile(profileSelected)}
         />
 

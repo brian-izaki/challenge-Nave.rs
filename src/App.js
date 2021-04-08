@@ -57,7 +57,7 @@ function App() {
               <Cadastrar />
             </PrivateRoute>
 
-            <PrivateRoute path={PAGES_ROUTE.alterar}>
+            <PrivateRoute path={`${PAGES_ROUTE.alterar}/:id`}>
               <Alterar />
             </PrivateRoute>
           </Switch>
