@@ -4,10 +4,17 @@
 - libs:
   - React
   - prop-types
+  - react-router
   - react-router-dom
   - react-icons
   - Styled components
-- Utilizado o toolkit Create React App
+- Toolkit Create React App
+- Comando `npx eslint --init` para padronizar o código com o padrão da Airbnb.
+
+# Utilizando a aplicação
+- clone este repositório na máquina local
+- utilize o comando `npm install` dentro do diretório clonado
+- execute o comando `npm start` (a aplicação irá rodar no http://localhost:3000)
 
 ---
 
