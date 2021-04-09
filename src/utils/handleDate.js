@@ -1,3 +1,18 @@
+function monthsToday(date) {
+  const pastDate = new Date(date);
+  const todayDate = new Date();
+
+  const isActualYear = pastDate.getFullYear() === todayDate.getFullYear();
+  if (isActualYear) {
+    return Math.abs((pastDate.getMonth() - todayDate.getMonth()) + 1);
+  }
+
+  const monthsPastYear = 11 - pastDate.getMonth();
+  const calcMonthsBetweenYear = (monthsPastYear + todayDate.getMonth()) + 1;
+  const hasMoreThan12 = calcMonthsBetweenYear >= 12;
+  return hasMoreThan12 ? calcMonthsBetweenYear - 12 : calcMonthsBetweenYear;
+}
+
 function yearsToday(date) {
   const pastDate = new Date(date).getTime();
   const todayDate = new Date().getTime();
@@ -17,6 +32,7 @@ function validDate(date, isToValueInput = false) {
 }
 
 export {
+  monthsToday,
   yearsToday,
   validDate,
 };

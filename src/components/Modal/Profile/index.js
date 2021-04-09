@@ -4,7 +4,7 @@ import { MdClose, MdDelete, MdEdit } from 'react-icons/md';
 import Modal from '..';
 import Button from '../../Button';
 import CustomLink from '../../CustomLink';
-import { yearsToday } from '../../../utils/handleDate';
+import { monthsToday, yearsToday } from '../../../utils/handleDate';
 
 const keyframeModal = keyframes`
   0% {
@@ -95,6 +95,9 @@ export default function ModalProfile({
     setIsOpenModal(false);
   }
 
+  const timeAtWorkMonth = monthsToday(profileData.admission_date) || '';
+  const timeAtWorkYear = yearsToday(profileData.admission_date) || '';
+
   return (
     <Modal isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal}>
       <ProfileContainer>
@@ -114,36 +117,28 @@ export default function ModalProfile({
           <dl>
             <dt>
               <h2>
-                {' '}
                 {profileData.name}
-                {' '}
               </h2>
             </dt>
             <dd>
-              {' '}
               {profileData.job_role}
-              {' '}
             </dd>
 
             <dt>Idade</dt>
             <dd>
-              {' '}
-              {yearsToday(profileData.birthdate)}
-              {' '}
+              {`${yearsToday(profileData.birthdate)} anos`}
             </dd>
 
             <dt>Tempo de empresa</dt>
             <dd>
-              {' '}
-              {yearsToday(profileData.admission_date)}
-              {' '}
+              {timeAtWorkYear && `${timeAtWorkYear} anos `}
+              {timeAtWorkMonth && `${timeAtWorkMonth} meses`}
+              {!timeAtWorkYear && !timeAtWorkMonth && 'ainda não completou 1 mês'}
             </dd>
 
             <dt>Projetos que participou</dt>
             <dd>
-              {' '}
               {profileData.project}
-              {' '}
             </dd>
           </dl>
           <div>
