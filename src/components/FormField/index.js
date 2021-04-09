@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const FieldContainer = styled.div`
   display: flex;
@@ -25,11 +26,22 @@ const CustomInput = styled.input`
   letter-spacing: 0.05rem;
 `;
 
-export default function FormField({ text, type, name, id, ...props }) {
+export default function FormField({
+  text, id, ...props
+}) {
   return (
     <FieldContainer>
-      <CustomLabel htmlFor={id}> {text} </CustomLabel>
-      <CustomInput type={type} name={name} id={id} placeholder={text} {...props}/>
+      <CustomLabel htmlFor={id}>
+        {' '}
+        {text}
+        {' '}
+      </CustomLabel>
+      <CustomInput placeholder={text} {...props} />
     </FieldContainer>
-  )
+  );
 }
+
+FormField.propTypes = {
+  text: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+};

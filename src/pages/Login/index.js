@@ -1,12 +1,13 @@
-import styled from "styled-components";
-import FormField from "../../components/FormField";
-import Logo from "../../assets/logo.svg";
-import Button from "../../components/Button";
-import { setToken as setTokenSession } from "../../utils/handleToken";
-import { PAGES_ROUTE } from "../../utils/pagesRoute";
-import { checkLogin } from "../../services/login";
-import { useState } from "react";
-import { useHistory } from "react-router";
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import { useState } from 'react';
+import { useHistory } from 'react-router';
+import FormField from '../../components/FormField';
+import Logo from '../../assets/logo.svg';
+import Button from '../../components/Button';
+import { setToken as setTokenSession } from '../../utils/handleToken';
+import PAGES_ROUTE from '../../utils/pagesRoute';
+import checkLogin from '../../services/login';
 
 const BtnLogin = styled(Button.Dark)`
   width: 100%;
@@ -46,10 +47,10 @@ const LoginContainer = styled.section`
 export default function Login({ setToken }) {
   const history = useHistory();
 
-  const [isErrorValidation, setIsErrorValidation] = useState(false)
+  const [isErrorValidation, setIsErrorValidation] = useState(false);
   const [loginForm, setLoginForm] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
 
   function handleForm(e) {
@@ -63,12 +64,12 @@ export default function Login({ setToken }) {
     e.preventDefault();
 
     const userSection = await checkLogin(loginForm);
-    
-    if (!userSection.token){
-      setIsErrorValidation(true)
+
+    if (!userSection.token) {
+      setIsErrorValidation(true);
       return;
     }
-    
+
     setToken(userSection);
     setTokenSession(userSection);
 
@@ -106,3 +107,7 @@ export default function Login({ setToken }) {
     </LoginContainer>
   );
 }
+
+Login.propTypes = {
+  setToken: PropTypes.func.isRequired,
+};

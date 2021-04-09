@@ -1,13 +1,17 @@
-import { useEffect, useState } from "react";
-import styled from "styled-components";
-import Button from "../../components/Button";
-import Card from "../../components/Card";
-import CustomLink from "../../components/CustomLink";
-import Header from "../../components/Header";
-import ModalInformation from "../../components/Modal/Information";
-import ModalProfile from "../../components/Modal/Profile";
-import { findAllNavers, findOneNaver, deleteNaver } from "../../services/navers";
-import { PAGES_ROUTE } from "../../utils/pagesRoute";
+import { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import Button from '../../components/Button';
+import Card from '../../components/Card';
+import CustomLink from '../../components/CustomLink';
+import Header from '../../components/Header';
+import ModalInformation from '../../components/Modal/Information';
+import ModalProfile from '../../components/Modal/Profile';
+import {
+  findAllNavers,
+  findOneNaver,
+  deleteNaver,
+} from '../../services/navers';
+import PAGES_ROUTE from '../../utils/pagesRoute';
 
 const HomeContainer = styled.div`
   & main {
@@ -32,13 +36,13 @@ const HomeContainer = styled.div`
     gap: 30px;
   }
 
-  @media(max-width: ${props => props.theme.breakpoint.tablet}px){
+  @media (max-width: ${(props) => props.theme.breakpoint.tablet}px) {
     & .card-list {
       justify-content: space-around;
     }
   }
 
-  @media(max-width: ${props => props.theme.breakpoint.mobile}px){
+  @media (max-width: ${(props) => props.theme.breakpoint.mobile}px) {
     & .main-header {
       flex-direction: column;
       gap: 10px;
@@ -76,9 +80,7 @@ export default function Home() {
   }
 
   function handleDeleteProfile(id) {
-    console.log("Deletou este perfil no banco de dados", id);
-
-    deleteNaver(id)
+    deleteNaver(id);
     closeModalDeleteProfile();
     setHasOpenModalProfile(false);
     setHasOpenModalDeleteMsg(true);
@@ -99,9 +101,9 @@ export default function Home() {
           <div className="main-header">
             <h1>Navers</h1>
             <div />
-            <Button.Dark>
-              <CustomLink to="/cadastrar">Adicionar Naver</CustomLink>
-            </Button.Dark>
+            <CustomLink to="/cadastrar">
+              <Button.Dark>Adicionar Naver</Button.Dark>
+            </CustomLink>
           </div>
 
           <div className="card-list">

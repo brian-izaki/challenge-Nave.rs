@@ -7,17 +7,16 @@ function yearsToday(date) {
   return Math.floor(yearsOld);
 }
 
-
-function validDate(date, isToValueInput=false) {
-  const regexDate = /(\d{4})|(\d{2})/g
+function validDate(date, isToValueInput = false) {
+  const regexDate = /(\d{4})|(\d{2})/g;
   const [year, month, day] = date.match(regexDate);
 
-  return !isToValueInput 
-    ? `${day}/${month}/${year}` 
-    : `${year}-${month}-${day}` 
+  return !isToValueInput
+    ? `${day}/${month}/${year}`
+    : `${year}-${month}-${day}`;
 }
 
 export {
   yearsToday,
   validDate,
-}
+};

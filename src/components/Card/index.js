@@ -1,8 +1,8 @@
-import { MdDelete, MdEdit } from "react-icons/md";
-import PropTypes from "prop-types";
-import styled from "styled-components";
-import Button from "../Button";
-import CustomLink from "../CustomLink";
+import { MdDelete, MdEdit } from 'react-icons/md';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import Button from '../Button';
+import CustomLink from '../CustomLink';
 
 const CardContainer = styled.div`
   display: flex;
@@ -25,7 +25,7 @@ const CardContainer = styled.div`
     font-weight: 600;
   }
 
-  @media(max-width: ${props => props.theme.breakpoint.mobile}px){
+  @media(max-width: ${(props) => props.theme.breakpoint.mobile}px){
     width: 100%;
   }
 `;
@@ -36,10 +36,9 @@ export default function Card({
   showModalProfile,
   showModalDeleteProfile,
 }) {
-  
   return (
     <CardContainer>
-      <div onClick={showModalProfile}>
+      <div role="presentation" onClick={showModalProfile}>
         <img src={profileData.url} alt="avatar user" />
       </div>
 
@@ -70,6 +69,8 @@ Card.propTypes = {
     job_role: PropTypes.string,
     project: PropTypes.string,
     url: PropTypes.string,
-  }),
+  }).isRequired,
+  showModalProfile: PropTypes.func.isRequired,
+  showModalDeleteProfile: PropTypes.func.isRequired,
   editPage: PropTypes.string.isRequired,
 };

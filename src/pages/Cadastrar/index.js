@@ -1,19 +1,19 @@
-import { useState } from "react";
-import FormNaverProfile from "../../components/FormNaverProfile";
-import Header from "../../components/Header";
-import ModalInformation from "../../components/Modal/Information";
-import { createNaver } from "../../services/navers";
-import { validDate } from "../../utils/handleDate";
+import { useState } from 'react';
+import FormNaverProfile from '../../components/FormNaverProfile';
+import Header from '../../components/Header';
+import ModalInformation from '../../components/Modal/Information';
+import { createNaver } from '../../services/navers';
+import { validDate } from '../../utils/handleDate';
 
 export default function Cadastrar() {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [dataProfile, setDataProfile] = useState({
-    job_role: "",
-    admission_date: "",
-    birthdate: "",
-    project: "",
-    name: "",
-    url: "",
+    job_role: '',
+    admission_date: '',
+    birthdate: '',
+    project: '',
+    name: '',
+    url: '',
   });
 
   function handleInput(e) {
@@ -28,8 +28,8 @@ export default function Cadastrar() {
     createNaver({
       ...dataProfile,
       birthdate: validDate(dataProfile.birthdate),
-      admission_date: validDate(dataProfile.admission_date)
-    })
+      admission_date: validDate(dataProfile.admission_date),
+    });
     setIsOpenModal(true);
   }
 

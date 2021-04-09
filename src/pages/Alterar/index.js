@@ -1,20 +1,20 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import FormNaverProfile from "../../components/FormNaverProfile";
-import Header from "../../components/Header";
-import ModalInformation from "../../components/Modal/Information";
-import { findOneNaver, updateNaver } from "../../services/navers";
-import { validDate } from "../../utils/handleDate";
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import FormNaverProfile from '../../components/FormNaverProfile';
+import Header from '../../components/Header';
+import ModalInformation from '../../components/Modal/Information';
+import { findOneNaver, updateNaver } from '../../services/navers';
+import { validDate } from '../../utils/handleDate';
 
 export default function Alterar() {
   const { id } = useParams();
   const [dataProfile, setDataProfile] = useState({
-    job_role: "",
-    admission_date: "",
-    birthdate: "",
-    project: "",
-    name: "",
-    url: "",
+    job_role: '',
+    admission_date: '',
+    birthdate: '',
+    project: '',
+    name: '',
+    url: '',
   });
   const [isOpenModal, setIsOpenModal] = useState(false);
 
@@ -31,7 +31,7 @@ export default function Alterar() {
       ...dataProfile,
       admission_date: validDate(dataProfile.admission_date),
       birthdate: validDate(dataProfile.birthdate),
-    })
+    });
     setIsOpenModal(true);
   }
 

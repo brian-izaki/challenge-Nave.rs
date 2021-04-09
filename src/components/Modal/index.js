@@ -1,10 +1,10 @@
-import PropTypes from "prop-types";
-import { useHistory } from "react-router";
-import styled from "styled-components";
-import { PAGES_ROUTE } from "../../utils/pagesRoute";
+import PropTypes from 'prop-types';
+import { useHistory } from 'react-router';
+import styled from 'styled-components';
+import PAGES_ROUTE from '../../utils/pagesRoute';
 
 const ModalContainer = styled.div`
-  display: ${(props) => (props.isOpen ? "block" : "none")};
+  display: ${(props) => (props.isOpen ? 'block' : 'none')};
   position: fixed;
   top: 0;
   bottom: 0;
@@ -23,14 +23,13 @@ ModalContainer.PaperContainer = styled.div`
 `;
 
 export default function Modal({ children, isOpenModal, setIsOpenModal }) {
-
   const history = useHistory();
 
   function handleClickOutModal(e) {
     const isOutModal = e.target.dataset.outModal;
     if (isOutModal) {
-      setIsOpenModal(false)
-      history.push(PAGES_ROUTE.home)
+      setIsOpenModal(false);
+      history.push(PAGES_ROUTE.home);
     }
   }
 

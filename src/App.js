@@ -1,13 +1,16 @@
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
-import styled from "styled-components";
-import GlobalStyle from "./styles/globalStyle";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Cadastrar from "./pages/Cadastrar";
-import Alterar from "./pages/Alterar";
-import { PAGES_ROUTE } from "./utils/pagesRoute";
-import { getToken } from "./utils/handleToken";
-import { useState } from "react";
+import {
+  BrowserRouter, Switch, Route,
+} from 'react-router-dom';
+import styled from 'styled-components';
+import { useState } from 'react';
+import GlobalStyle from './styles/globalStyle';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Cadastrar from './pages/Cadastrar';
+import Alterar from './pages/Alterar';
+import PAGES_ROUTE from './utils/pagesRoute';
+import { getToken } from './utils/handleToken';
+import PrivateRoute from './components/PrivateRoute';
 
 const Container = styled.div`
   display: flex;
@@ -16,27 +19,7 @@ const Container = styled.div`
 `;
 
 function App() {
-  const [token, setToken] = useState(getToken());
-
-  function PrivateRoute({ children, ...attr }) {
-    return (
-      <Route
-        {...attr}
-        render={({ location }) =>
-          token ? (
-            children
-          ) : (
-            <Redirect
-              to={{
-                pathname: PAGES_ROUTE.login,
-                state: { from: location },
-              }}
-            />
-          )
-        }
-      />
-    );
-  }
+  const [token, setToken] = useState(getToken() || '');
 
   return (
     <>
@@ -49,15 +32,15 @@ function App() {
               <Login setToken={setToken} />
             </Route>
 
-            <PrivateRoute exact path={PAGES_ROUTE.home}>
+            <PrivateRoute token={token} exact path={PAGES_ROUTE.home}>
               <Home />
             </PrivateRoute>
 
-            <PrivateRoute path={PAGES_ROUTE.cadastrar}>
+            <PrivateRoute token={token} path={PAGES_ROUTE.cadastrar}>
               <Cadastrar />
             </PrivateRoute>
 
-            <PrivateRoute path={`${PAGES_ROUTE.alterar}/:id`}>
+            <PrivateRoute token={token} path={`${PAGES_ROUTE.alterar}/:id`}>
               <Alterar />
             </PrivateRoute>
           </Switch>

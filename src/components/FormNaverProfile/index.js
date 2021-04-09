@@ -1,9 +1,10 @@
-import styled from "styled-components";
-import FormField from "../FormField";
-import Button from "../Button";
-import { MdKeyboardArrowLeft } from "react-icons/md";
-import CustomLink from "../CustomLink";
-import { PAGES_ROUTE } from "../../utils/pagesRoute";
+import styled from 'styled-components';
+import { MdKeyboardArrowLeft } from 'react-icons/md';
+import PropTypes from 'prop-types';
+import FormField from '../FormField';
+import Button from '../Button';
+import CustomLink from '../CustomLink';
+import PAGES_ROUTE from '../../utils/pagesRoute';
 
 const FormNaverProfileContainer = styled.section`
   margin: 0 auto;
@@ -59,7 +60,6 @@ export default function FormNaverProfile({
       <FormProfileContainer onSubmit={onSubmit}>
         <div>
           <FormField
-            tabIndex="1"
             text="Nome"
             type="text"
             name="name"
@@ -69,7 +69,6 @@ export default function FormNaverProfile({
             required
           />
           <FormField
-            tabIndex="3"
             text="Data do nascimento"
             type="date"
             name="birthdate"
@@ -79,7 +78,6 @@ export default function FormNaverProfile({
             required
           />
           <FormField
-            tabIndex="5"
             text="Projetos que participou"
             type="text"
             name="project"
@@ -90,7 +88,6 @@ export default function FormNaverProfile({
         </div>
         <div>
           <FormField
-            tabIndex="2"
             text="Cargo"
             type="text"
             name="job_role"
@@ -99,7 +96,6 @@ export default function FormNaverProfile({
             value={dataInput.job_role}
           />
           <FormField
-            tabIndex="4"
             text="Tempo de empresa"
             type="date"
             name="admission_date"
@@ -109,7 +105,6 @@ export default function FormNaverProfile({
             required
           />
           <FormField
-            tabIndex="6"
             text="URL da foto do Naver"
             type="text"
             name="url"
@@ -119,10 +114,25 @@ export default function FormNaverProfile({
             required
           />
         </div>
-        <Button.Dark tabIndex="7" >
+        <Button.Dark>
           Salvar
         </Button.Dark>
       </FormProfileContainer>
     </FormNaverProfileContainer>
   );
 }
+
+FormNaverProfile.propTypes = {
+  title: PropTypes.string.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  dataInput: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    birthdate: PropTypes.string,
+    admission_date: PropTypes.string,
+    job_role: PropTypes.string,
+    project: PropTypes.string,
+    url: PropTypes.string,
+  }).isRequired,
+};

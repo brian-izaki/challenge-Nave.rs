@@ -1,10 +1,10 @@
-import styled from "styled-components";
-import PropTypes from "prop-types";
-import { MdClose, MdDelete, MdEdit } from "react-icons/md";
-import Modal from "..";
-import Button from "../../Button";
-import CustomLink from "../../CustomLink";
-import { yearsToday } from "../../../utils/handleDate";
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import { MdClose, MdDelete, MdEdit } from 'react-icons/md';
+import Modal from '..';
+import Button from '../../Button';
+import CustomLink from '../../CustomLink';
+import { yearsToday } from '../../../utils/handleDate';
 
 const ProfileContainer = styled.div`
   position: relative;
@@ -21,7 +21,7 @@ const ProfileContainer = styled.div`
     right: 24px;
     top: 24px;
     cursor: pointer;
-    z-index: ${(props) => props.theme.zIndex.maxLevel}
+    z-index: ${(props) => props.theme.zIndex.maxLevel};
   }
 
   & .photo {
@@ -57,7 +57,7 @@ const ProfileContainer = styled.div`
     & .closeModal {
       color: white;
     }
-    
+
     & .photo {
       height: 250px;
     }
@@ -78,7 +78,11 @@ export default function ModalProfile({
   return (
     <Modal isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal}>
       <ProfileContainer>
-        <span onClick={handleCloseModal} className="closeModal">
+        <span
+          role="presentation"
+          onClick={handleCloseModal}
+          className="closeModal"
+        >
           <MdClose size={24} />
         </span>
 
@@ -89,18 +93,38 @@ export default function ModalProfile({
         <div className="profile-info">
           <dl>
             <dt>
-              <h2> {profileData.name} </h2>
+              <h2>
+                {' '}
+                {profileData.name}
+                {' '}
+              </h2>
             </dt>
-            <dd> {profileData.job_role} </dd>
+            <dd>
+              {' '}
+              {profileData.job_role}
+              {' '}
+            </dd>
 
             <dt>Idade</dt>
-            <dd> {yearsToday(profileData.birthdate)} </dd>
+            <dd>
+              {' '}
+              {yearsToday(profileData.birthdate)}
+              {' '}
+            </dd>
 
             <dt>Tempo de empresa</dt>
-            <dd> {yearsToday(profileData.admission_date)} </dd>
+            <dd>
+              {' '}
+              {yearsToday(profileData.admission_date)}
+              {' '}
+            </dd>
 
             <dt>Projetos que participou</dt>
-            <dd> {profileData.project} </dd>
+            <dd>
+              {' '}
+              {profileData.project}
+              {' '}
+            </dd>
           </dl>
           <div>
             <Button.Icon onClick={deleteClick}>
@@ -118,7 +142,7 @@ export default function ModalProfile({
   );
 }
 
-Modal.propTypes = {
+ModalProfile.propTypes = {
   profileData: PropTypes.shape({
     id: PropTypes.string,
     name: PropTypes.string,
@@ -126,7 +150,8 @@ Modal.propTypes = {
     admission_date: PropTypes.string,
     job_role: PropTypes.string,
     project: PropTypes.string,
-  }),
+    url: PropTypes.string,
+  }).isRequired,
   isOpenModal: PropTypes.bool.isRequired,
   setIsOpenModal: PropTypes.func.isRequired,
   deleteClick: PropTypes.func.isRequired,
