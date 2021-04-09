@@ -1,10 +1,28 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 import { MdClose, MdDelete, MdEdit } from 'react-icons/md';
 import Modal from '..';
 import Button from '../../Button';
 import CustomLink from '../../CustomLink';
 import { yearsToday } from '../../../utils/handleDate';
+
+const keyframeModal = keyframes`
+  0% {
+    margin-top: 500px;
+  }
+
+  80% {
+    margin-top: 0px;
+  }
+
+  90% {
+    margin-top: 10px;
+  }
+
+  100% {
+    margin-top: 0px;
+  }
+`;
 
 const ProfileContainer = styled.div`
   position: relative;
@@ -15,6 +33,8 @@ const ProfileContainer = styled.div`
   width: auto;
   margin: 0 40px;
   background-color: ${(props) => props.theme.backgroundColor};
+
+  animation: ${keyframeModal} 1s forwards;
 
   & .closeModal {
     position: absolute;
