@@ -11,8 +11,9 @@ const ProfileContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
 
-  height: 503px;
-  width: 1006px;
+  height: 500px;
+  width: auto;
+  margin: 0 40px;
   background-color: ${(props) => props.theme.backgroundColor};
 
   & .closeModal {
@@ -20,9 +21,16 @@ const ProfileContainer = styled.div`
     right: 24px;
     top: 24px;
     cursor: pointer;
+    z-index: ${(props) => props.theme.zIndex.maxLevel}
   }
 
   & .photo {
+    height: 100%;
+
+    & > img {
+      filter: grayscale(100%);
+      height: 100%;
+    }
   }
 
   & .profile-info {
@@ -41,6 +49,17 @@ const ProfileContainer = styled.div`
       dd {
         margin-bottom: 24px;
       }
+    }
+  }
+
+  @media (max-width: ${(props) => props.theme.breakpoint.tablet}px) {
+    grid-template-columns: 1fr;
+    & .closeModal {
+      color: white;
+    }
+    
+    & .photo {
+      height: 250px;
     }
   }
 `;
@@ -64,10 +83,7 @@ export default function ModalProfile({
         </span>
 
         <div className="photo">
-          <img
-            src={profileData.url}
-            alt="imagem de perfil"
-          />
+          <img src={profileData.url} alt="imagem de perfil" />
         </div>
 
         <div className="profile-info">

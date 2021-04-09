@@ -11,7 +11,8 @@ const CardContainer = styled.div`
   align-items: flex-start;
   gap: 10px;
 
-  width: 25%;
+  max-width: 23.4%;
+  min-width: 230px;
 
   font-size: 1.2rem;
 
@@ -22,6 +23,10 @@ const CardContainer = styled.div`
 
   & p:nth-child(2) {
     font-weight: 600;
+  }
+
+  @media(max-width: ${props => props.theme.breakpoint.mobile}px){
+    width: 100%;
   }
 `;
 

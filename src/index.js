@@ -11,6 +11,10 @@ const theme = {
     maxLevel: 1000,
     mediumLevel: 900, 
     minLevel: 0,
+  },
+  breakpoint: {
+    tablet: 900,
+    mobile: 400,
   }
 }
 

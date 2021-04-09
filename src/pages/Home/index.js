@@ -27,8 +27,22 @@ const HomeContainer = styled.div`
 
   & .card-list {
     display: flex;
-    flex-direction: row;
+    flex-flow: row wrap;
+    justify-content: flex-start;
     gap: 30px;
+  }
+
+  @media(max-width: ${props => props.theme.breakpoint.tablet}px){
+    & .card-list {
+      justify-content: space-around;
+    }
+  }
+
+  @media(max-width: ${props => props.theme.breakpoint.mobile}px){
+    & .main-header {
+      flex-direction: column;
+      gap: 10px;
+    }
   }
 `;
 

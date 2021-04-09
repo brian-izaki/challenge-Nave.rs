@@ -25,10 +25,17 @@ const FormProfileContainer = styled.form`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr auto;
+  
   gap: 0 30px;
   & > button {
     grid-area: 2/1/3/3;
     justify-self: flex-end;
+  }
+
+  @media(max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
   }
 `;
 
